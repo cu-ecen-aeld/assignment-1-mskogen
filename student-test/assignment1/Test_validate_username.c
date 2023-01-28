@@ -14,5 +14,13 @@
 */
 void test_validate_my_username()
 {
-    TEST_ASSERT_EQUAL_STRING_MESSAGE(my_username(), malloc_username_from_conf_file(), "Verify that usernames match.");
+    /* 1) Call the my_username() function in autotest-validate.c to get your hard coded username. */
+    const char* username = my_username();
+
+    /* 2) Call malloc_username_from_conf_file() to get username from test file */
+    char* m_username = malloc_username_from_conf_file();
+
+    TEST_ASSERT_EQUAL_STRING_MESSAGE(username, m_username, "FAIL: Usernames did not match!");
+
+    free(m_username);
 }
